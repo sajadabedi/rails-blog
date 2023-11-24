@@ -1,0 +1,9 @@
+<h1 class="text-4xl font-bold">Blogs</h1>
+<div class="block">
+  <% @blog_posts.each do |post| %>
+    <div class="mb-6">
+      <h2 class="font-medium text-xl text-blue-600"><%= link_to post.title, post %></h2>
+      <p><%= post.body %></p>
+    </div>
+  <% end %>
+</div>

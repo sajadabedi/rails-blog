@@ -1,18 +1,24 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>MyAwesomeBlog</title>
+    <title>Blog</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
-
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
-
   <body>
-    <main class="container mx-auto mt-28 px-5 flex">
+    <main class="prose container mx-auto mt-28 px-5 flex gap-8 flex-col">
+      <p class="notice absolute"><%= notice %></p>
+      <p class="alert absolute"><%= alert %></p>
+      <header>
+        <% if user_signed_in? %>
+          <%= link_to "New post", new_blog_post_path %>
+          <%= button_to "logout", destroy_user_session_path, :method => :delete %>
+        <% end %>
+      </header>
       <%= yield %>
     </main>
   </body>

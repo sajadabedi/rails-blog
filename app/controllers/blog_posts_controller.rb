@@ -3,11 +3,7 @@ class BlogPostsController < ApplicationController
   before_action :set_blog_post, except: %i[index new create]
 
   def index
-    if user_signed_in?
-      @blog_posts = BlogPost.all
-    else
-      @blog_posts = BlogPost.published
-    end
+    @blog_posts = user_signed_in? ? BlogPost.all : BlogPost.published
   end
 
   def show
@@ -50,9 +46,9 @@ class BlogPostsController < ApplicationController
 
   def set_blog_post
     if user_signed_in?
-      @blog_posts = BlogPost.find(params[:id]) #find any post
+      @blog_post = BlogPost.find(params[:id]) #find any post
     else
-      @blog_posts = BlogPost.published.find(params[:id]) # only published post
+      @blog_post = BlogPost.published.find(params[:id]) # only published post
     end
   rescue ActiveRecord::RecordNotFound
     redirect_to root_path

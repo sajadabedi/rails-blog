@@ -5,7 +5,7 @@ class BlogPost < ApplicationRecord
 
   scope :sorted,
         -> do
-          order(arel_table[:published_at].desc.nulls_last).order(
+          order(arel_table[:published_at].desc.nulls_first).order(
             updated_at: :desc
           )
         end

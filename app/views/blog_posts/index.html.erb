@@ -2,6 +2,7 @@
 <div class="block">
   <% @blog_posts.each do |post| %>
     <div class="mb-6">
+      <%= image_tag post.cover_image if post.cover_image.present? %>
       <% if post.draft? %>
         <div class="text-gray-600 bg-gray-100 rounded inline-block px-2 py-1 text-xs">Draft</div>
       <% elsif post.scheduled?  %>

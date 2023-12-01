@@ -2,6 +2,7 @@ class BlogPost < ApplicationRecord
   validates :title, presence: true
   validates :content, presence: true
   has_rich_text :content
+  has_one_attached :cover_image
 
   scope :sorted,
         -> do
